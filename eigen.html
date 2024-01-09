@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: linear-gradient(to top, #000000, #222222);
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: #ffffff;
+      cursor: pointer;
+      overflow: visible; /* Allow content to overflow the viewport */
+      margin: 0; /* Remove default margin */
+      height: 100vh; /* Set the body height to fill the viewport */
+      display: flex; /* Use flexbox for vertical centering */
+      flex-direction: column; /* Arrange elements vertically */
+      align-items: center; /* Horizontally center content */
+      justify-content: center; /* Vertically center content */
+      overflow: hidden; /* Hide any overflow */
+    }
+    
+    h1 {
+      font-size: 60px;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    
+    p {
+      font-size: 26px;
+      margin-top: 10px; /* Add some spacing */
+    }
+    
+    p a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    p a.link {
+      text-decoration: underline; /* This underlines the text */
+    }
+    
+    p a:hover {
+      color: #ff9900;
+    }
+    
+    .stonks-icon {
+      position: absolute;
+      pointer-events: none; /* Ignore clicks on the image */
+      transition: transform 0.5s, opacity 0.5s; /* Add transition effect */
+    }
+    
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-700%);
+      }
+    }
+  </style>
+  <title>Thomas Bush</title>
+</head>
+<body>
+  <h1>Thomas Bush</h1>
+  <p>is participating in the EigenLayer testnet as an EigenDA node operator.</a></p>
+  <p>Let's see what restaking has to offer!</a></p>
+
+  <p><a href="https://twitter.com/tstereth" class="link">Twitter</a> · <a href="https://github.com/tster/eigen-node" class="link">Metadata</a></p>
+  
+  <script>
+    document.addEventListener('click', function(event) {
+      const x = event.clientX;
+      const y = event.clientY;
+      const imageSize = 100;
+      const imageOffset = imageSize / 2;
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      
+      const stonksIcon = document.createElement('img');
+      stonksIcon.src = 'stonks.png';
+      stonksIcon.alt = 'Stonks Image';
+      stonksIcon.classList.add('stonks-icon');
+      stonksIcon.style.width = imageSize + 'px';
+      stonksIcon.style.height = imageSize + 'px';
+      
+      // Adjust the position if the image is near the edges
+      let left = x - imageOffset;
+      let top = y - imageOffset;
+      if (left + imageSize > viewportWidth) {
+        left = viewportWidth - imageSize;
+      }
+      if (top + imageSize > viewportHeight) {
+        top = viewportHeight - imageSize;
+      }
+      
+      stonksIcon.style.left = left + 'px';
+      stonksIcon.style.top = top + 'px';
+      document.body.appendChild(stonksIcon);
+      
+      setTimeout(function() {
+        stonksIcon.style.animation = 'floatUp 1s forwards';
+        setTimeout(function() {
+          stonksIcon.remove();
+        }, 1000); // Delay removal to match animation duration
+      }, 0); // Start animation immediately
+    });
+  </script>
+</body>
+</html>
